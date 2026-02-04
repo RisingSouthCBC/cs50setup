@@ -1,21 +1,23 @@
 {
-  "name": "CS50 Python Dev Container",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  "features": {},
+  "name": "Python Socratic Tutor Env",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "ms-python.vscode-pylance"
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "cs50.cs50"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
-        "python.analysis.typeCheckingMode": "basic"
+        "github.copilot.chat.instructions": [
+          {
+            "text": "You are a Socratic Tutor. STRICT RULE: NEVER provide the student with the answer, completed code, or the direct fix for a bug. Your role is to ask guiding questions. If a student asks for the answer, remind them your goal is to help them learn, then ask a question about their logic. Use 'toy examples' (unrelated analogies) only. Never write the student's code for them."
+          }
+        ],
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
       }
     }
   },
-  "postCreateCommand": "python --version && check50 --version",
-  "remoteUser": "vscode"
+  "postCreateCommand": "pip install --upgrade pip && pip install check50 style50 libcs50"
 }
